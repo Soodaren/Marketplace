@@ -11,3 +11,12 @@
     height: 60px;
     float: left;
 }
+
+.navbar-light .navbar-nav .nav-link{
+    color: black;
+}
+
+.cart{
+    margin-left: auto;
+    margin-right: 12px;
+}

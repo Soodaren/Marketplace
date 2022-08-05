@@ -1,0 +1,17 @@
+.listProduct{
+    display: flex;
+    flex-direction: row;
+}
+
+.hd{
+    margin-top: 3em;
+    text-align: center;
+}
+
+.sectionQuantity{
+    margin-left: 12px;
+}
+
+.quantity{
+    padding: 0 10px;
+}

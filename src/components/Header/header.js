@@ -1,6 +1,7 @@
 import React from "react";
 import './header.css';
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.png';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function Header() {
     return (
@@ -43,6 +44,9 @@ function Header() {
                         </a>
                     </li>
                 </ul>
+                <div className="cart">
+                    <ShoppingCartIcon/>
+                </div>
             </div>
         </nav>
     );
