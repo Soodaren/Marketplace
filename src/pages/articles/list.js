@@ -9,10 +9,11 @@ import Box from '@mui/material/Box';
 import './list.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
+import {connect} from "react-redux";
+import {increment, decrement} from "../../actions/quantityActions";
 
-function List() {
+function List(props) {
     const [productList, setProductList] = useState([]);
-    const [quantity, setQuantity] = useState(0);
 
     const getListOfProducts = () => {
         getProducts().then((response) => {
@@ -25,11 +26,11 @@ function List() {
     })
 
     const decreaseQuantity = () => {
-        setQuantity(quantity - 1);
+        props.dispatch(decrement())
     }
 
     const increaseQuantity = () => {
-        setQuantity(quantity + 1);
+        props.dispatch(increment())
     }
 
     return (
@@ -48,14 +49,14 @@ function List() {
                                 <Card variant="outlined">
                                     <CardMedia
                                         component="img"
-                                        heigth="194"
-                                        image={data.image.url}
+                                        className="productImg"
+                                        image={`https://akata-marketplace.goavana.com${data.image.url}`}
                                     />
                                     <CardContent>
                                         <Typography color="textPrimary" gutterBottom>
                                             Title: {data.title}
                                         </Typography>
-                                        <Typography color="textPrimary">
+                                        <Typography className="description" color="textPrimary">
                                             Description: {data.description}
                                         </Typography>
                                     </CardContent>
@@ -67,9 +68,9 @@ function List() {
                                         <span className="sectionQuantity">
                                         <Button
                                             variant="contained"
-                                            disabled={quantity < 1}
+                                            // disabled={quantity < 1}
                                             onClick={decreaseQuantity}>-</Button>
-                                        <span className="quantity">{quantity}</span>
+                                        <span className="quantity">{props.quantity}</span>
                                         <Button
                                             variant="contained"
                                             onClick={increaseQuantity}>+</Button>
@@ -85,4 +86,9 @@ function List() {
     );
 }
 
-export default List;
+const mapStateToProps = (state) => {
+    return {
+        quantity: state.quantity
+    }
+}
+export default connect(mapStateToProps)(List);

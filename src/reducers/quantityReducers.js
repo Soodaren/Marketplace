@@ -5,7 +5,7 @@ const quantityReducer = (state = {quantity: 0}, action) => {
         case INCREMENT_QUANTITY:
             return {quantity: state.quantity + 1}
         case DECREMENT_QUANTITY:
-            return {quantity: state.quantity + 1}
+            return {quantity: state.quantity - 1}
         default:
             return state
     }

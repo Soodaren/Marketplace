@@ -1,6 +1,17 @@
 .listProduct{
     display: flex;
     flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.productImg{
+    height: 240px;
+}
+
+.description{
+    height: 200px;
+    overflow: auto;
 }
 
 .hd{
@@ -9,7 +20,7 @@
 }
 
 .sectionQuantity{
-    margin-left: 12px;
+    margin-left: 5em;
 }
 
 .quantity{
