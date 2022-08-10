@@ -2,11 +2,12 @@ import React from "react";
 import './header.css';
 import logo from '../../images/logo.png';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from "@material-ui/core/Badge";
 
 function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light nav">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
                 <img src={logo} className="logo" alt="logo"/>
             </a>
             <button
@@ -45,7 +46,9 @@ function Header() {
                     </li>
                 </ul>
                 <div className="cart">
+                    <Badge color="secondary" badgeContent="1">
                     <ShoppingCartIcon/>
+                    </Badge>
                 </div>
             </div>
         </nav>

@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import './list.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Button from '@mui/material/Button';
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {increment, decrement} from "../../actions/quantityActions";
 
 function List(props) {
@@ -25,13 +25,7 @@ function List(props) {
         getListOfProducts();
     })
 
-    const decreaseQuantity = () => {
-        props.dispatch(decrement())
-    }
-
-    const increaseQuantity = () => {
-        props.dispatch(increment())
-    }
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -56,24 +50,28 @@ function List(props) {
                                         <Typography color="textPrimary" gutterBottom>
                                             Title: {data.title}
                                         </Typography>
-                                        <Typography className="description" color="textPrimary">
+                                        <Typography className="description" color="textPrimary" gutterBottom>
                                             Description: {data.description}
                                         </Typography>
+                                        <Typography color="textPrimary" gutterBottom>
+                                            Price: Rs {data.price}
+                                        </Typography>
                                     </CardContent>
-                                    <Typography color="textPrimary" gutterBottom>
-                                        Price: {data.price}
-                                    </Typography>
                                     <div>
                                         <ShoppingCartIcon/>
                                         <span className="sectionQuantity">
                                         <Button
                                             variant="contained"
-                                            // disabled={quantity < 1}
-                                            onClick={decreaseQuantity}>-</Button>
-                                        <span className="quantity">{props.quantity}</span>
-                                        <Button
-                                            variant="contained"
-                                            onClick={increaseQuantity}>+</Button>
+                                            disabled={props.quantity.quantity < 2}
+                                            onClick={() => {
+                                                dispatch(decrement(props.quantity, data.id))
+                                            }}>-</Button>
+                                                <span className="quantity">{props.quantity.quantity}</span>
+                                                    <Button
+                                                        variant="contained"
+                                                        onClick={() => {
+                                                            dispatch(increment(props.quantity.quantity, data.id))
+                                                        }}>+</Button>
                                         </span>
                                     </div>
                                 </Card>
