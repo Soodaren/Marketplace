@@ -15,6 +15,10 @@ import {increment, decrement} from "../../actions/quantityActions";
 function List(props) {
     const [productList, setProductList] = useState([]);
 
+    const {
+        quantity
+    } = props
+
     const getListOfProducts = () => {
         getProducts().then((response) => {
             setProductList(response.data);
@@ -22,7 +26,9 @@ function List(props) {
     }
 
     useEffect(() => {
-        getListOfProducts();
+        if (productList.length === 0) {
+            getListOfProducts();
+        }
     })
 
     const dispatch = useDispatch();
@@ -62,15 +68,15 @@ function List(props) {
                                         <span className="sectionQuantity">
                                         <Button
                                             variant="contained"
-                                            disabled={props.quantity.quantity < 2}
+                                            disabled={quantity.quantity < 2}
                                             onClick={() => {
-                                                dispatch(decrement(props.quantity, data.id))
+                                                dispatch(decrement(quantity, data.id))
                                             }}>-</Button>
-                                                <span className="quantity">{props.quantity.quantity}</span>
+                                                <span className="quantity">{quantity.quantity}</span>
                                                     <Button
                                                         variant="contained"
                                                         onClick={() => {
-                                                            dispatch(increment(props.quantity.quantity, data.id))
+                                                            dispatch(increment(quantity, data.id))
                                                         }}>+</Button>
                                         </span>
                                     </div>
